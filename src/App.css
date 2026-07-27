@@ -139,3 +139,16 @@ li-container {
   border-width: 1px;
   color: black;
 }
+.rbc-button-link {
+    font-style: bold;
+    font-size: 20px;
+}
+.rbc-toolbar .rbc-toolbar-label {
+  font-family: sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.rbc-toolbar button {
+  font-family: sans-serif;
+  font-size: 1rem;
+}

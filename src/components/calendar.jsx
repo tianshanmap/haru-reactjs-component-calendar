@@ -7,6 +7,7 @@ import enUS from 'date-fns/locale/en-US';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import NativeTimePicker from './time_picker';
 import api from 'haru-service-api';
+import styles from './calendar.module.css';
 
 // 4. Render the component within a height-defined container
 const AppointmentCalendar = ({name})=> {
@@ -109,13 +110,33 @@ const AppointmentCalendar = ({name})=> {
     setCurrentDate(newDate);
     await updateEventList(name,year_month);
   }
+  const customDayPropGetter = (date) => {
+    const today = new Date();
+    
+    // Highlight the current day container
+    if (date.toDateString() === today.toDateString()) {
+      return {
+        style: {
+          backgroundColor: '#b4dff2',
+          border: '1px solid #1890ff',
+        },
+      };
+    }
+    return {
+        style: {
+          backgroundColor: '#f1f7f7',
+          border: '1px solid #1890ff',
+          fontSize: '30px',
+        },
+    };
+  };  
   return (
     <>
     {isAppointmentOpen &&
       <NativeTimePicker name={name} slotInfo={currentSlot} onExit={handleBack}/>      
     }
     {isCalendarOpen &&
-      <div style={{ height: '800px' }}>
+      <div className={styles.calendar_container}>
         <Calendar
           localizer={localizer}
           selectable={true}
@@ -125,6 +146,7 @@ const AppointmentCalendar = ({name})=> {
           onNavigate={handleNavigate}
           onView={(newView) => setCurrentView(newView)}
           events={eventList}
+          dayPropGetter={customDayPropGetter}
         />
       </div>
     }

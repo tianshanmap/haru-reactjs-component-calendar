@@ -1,0 +1,9 @@
+.calendar_container {
+  height: 600px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: white; 
+  box-shadow: 50px 50px 70px rgba(12, 0, 0, 0.9);
+}
