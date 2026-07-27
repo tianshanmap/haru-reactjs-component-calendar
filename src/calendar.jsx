@@ -5,7 +5,7 @@ import enUS from 'date-fns/locale/en-US';
 
 // 1. Import the mandatory global CSS styles
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import NativeTimePicker from './time_picker';
+import NativeTimePicker from './components/time_picker';
 import api from 'haru-service-api';
 import styles from './calendar.module.css';
 

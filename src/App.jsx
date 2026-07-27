@@ -2,7 +2,7 @@ import './App.css'
 import Header from './components/header.jsx'
 import Footer from './components/footer.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AppointmentCalendar from './components/calendar.jsx'
+import AppointmentCalendar from './calendar.jsx'
 
 const AppointmentSection = () => {
   return (
