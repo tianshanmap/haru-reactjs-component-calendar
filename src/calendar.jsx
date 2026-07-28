@@ -49,7 +49,7 @@ const AppointmentCalendar = ({name})=> {
         if (result.length > 0){
           const list = result.map(x => {
             return {
-              title: x.event,
+              title: x.info,
               start: getDate(x.start_date,x.start_time),
               end: getDate(x.start_date,x.end_time),
               allDay: false,
