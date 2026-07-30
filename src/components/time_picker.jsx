@@ -17,6 +17,7 @@ export default function NativeTimePicker({name,slotInfo,onExit}) {
   const [editStartTime, setEditStartTime] = useState("");
   const [data, setData] = useState("");
   const [info, setInfo] = useState("");
+  const [phone, setPhone] = useState("");
   const [isMainOpen, setIsMainOpen] = useState(true);
   const [isEditOpen, setIsEditOpen] = useState(false);
 
@@ -55,6 +56,9 @@ export default function NativeTimePicker({name,slotInfo,onExit}) {
   const onInfoChange = (event) => {
     setInfo(event.target.value);  
   }
+  const onPhoneChange = (event) => {
+    setPhone(event.target.value);  
+  }
   const onAdd = async (event) => {
     const newUser = { 
       name: name,
@@ -62,7 +66,8 @@ export default function NativeTimePicker({name,slotInfo,onExit}) {
       start_time: startTime.format("HH:mm"), 
       end_time: endTime.format("HH:mm"), 
       event: data,
-      info: info, 
+      info: info,
+      phone: phone,
     };
     const response = await api.createAppointment(newUser);
     setList(response);
@@ -90,6 +95,7 @@ export default function NativeTimePicker({name,slotInfo,onExit}) {
       end_time: endTime.format("HH:mm"), 
       event: data,
       info: info, 
+      phone: phone,
     };
     const response = await api.updateAppointment(item);
     setList(response);
@@ -122,13 +128,17 @@ export default function NativeTimePicker({name,slotInfo,onExit}) {
         </div>
         <div className={styles.time_picker_time_container}>
           <div className={styles.time_picker_event}>
+            <div className={styles.time_picker_input_info}>
+              <label for="info">Who</label>
+              <input id="info" type="text" value={info} onChange={onInfoChange} />
+            </div>
+            <div className={styles.time_picker_input_event}>
+              <label for="phone">Phone</label>
+              <input id="phone" type="text" value={phone} onChange={onPhoneChange} width="50"/>
+            </div>
             <div className={styles.time_picker_input_event}>
               <label for="event">Event</label>
               <input id="event" type="text" value={data} onChange={onDataChange} width="50"/>
-            </div>
-            <div className={styles.time_picker_input_info}>
-              <label for="info">Info</label>
-              <input id="info" type="text" value={info} onChange={onInfoChange} />
             </div>
           </div>
           <div className={styles.time_picker_command}>
@@ -143,6 +153,7 @@ export default function NativeTimePicker({name,slotInfo,onExit}) {
                 <th>Start</th>
                 <th>End</th>
                 <th>Who</th>
+                <th>Phone</th>
                 <th>Event</th>
                 <th>Action</th>
               </tr>
@@ -153,6 +164,7 @@ export default function NativeTimePicker({name,slotInfo,onExit}) {
                   <td>{item.start_time}</td>
                   <td>{item.end_time}</td>
                   <td>{item.info}</td>
+                  <td>{item.phone}</td>
                   <td>{item.event}</td>
                   <td>
                     <button name={item.start_time} onClick={onEdit} event={item.event} info={item.info} className={styles.link_button}>Edit</button>&nbsp;&nbsp;
@@ -179,6 +191,10 @@ export default function NativeTimePicker({name,slotInfo,onExit}) {
             <div className={styles.time_picker_input_info}>
               <label for="info">Who</label>
               <input id="info" type="text" value={info} onChange={onInfoChange} />
+            </div>
+            <div className={styles.time_picker_input_info}>
+              <label for="phone">Phone</label>
+              <input id="phone" type="text" value={phone} onChange={onPhoneChange} />
             </div>
             <div className={styles.time_picker_input_event}>
               <label for="event">Event</label>
